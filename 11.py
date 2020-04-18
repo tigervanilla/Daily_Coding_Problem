@@ -14,14 +14,14 @@ class Trie:
     def __init__(self):
         self.root = Node()
 
-    def insert(self, word, node):
-        if len(word) == 0:
-            node.is_word_end = True
-            return
-        if word[0] not in node.children:
-            node.children[word[0]] = Node()
-        self.insert(word[1:], node.children[word[0]])
-    
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = Node()
+            node = node.children[char]
+        node.is_word_end = True
+
     def get_all_words(self, node, string_till_now, words):
         if len(node.children) != 0:
             if node.is_word_end:
@@ -51,17 +51,17 @@ class Trie:
 # Driver code
 ob = Trie()
 
-ob.insert('ball', ob.root)
-ob.insert('bat', ob.root)
-ob.insert('deer', ob.root)
-ob.insert('deal', ob.root)
-ob.insert('doll', ob.root)
-ob.insert('dog',ob.root)
-ob.insert('dork', ob.root)
-ob.insert('do', ob.root)
-ob.insert('dorm', ob.root)
-ob.insert('send', ob.root)
-ob.insert('sense', ob.root)
+ob.insert('ball')
+ob.insert('bat')
+ob.insert('deer')
+ob.insert('deal')
+ob.insert('doll')
+ob.insert('dog')
+ob.insert('dork')
+ob.insert('do')
+ob.insert('dorm')
+ob.insert('send')
+ob.insert('sense')
 
 ob.search('de')
 ob.search('do')
