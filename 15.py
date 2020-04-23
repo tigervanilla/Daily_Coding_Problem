@@ -25,7 +25,7 @@ print(random_element)
 # Reservoir sampling is a family of randomized algorithms
 # for randomly choosing k samples from a list of n items,
 # where n is either a very large or unknown number.
-# Typically n is large enough that the list doesn’t fit into main memory. 
+# Typically n is large enough that the list doesn’t fit into main memory.
 
 # Probablity of choosing ith element is
 # = 1/i * (1 - 1/(i+1)) * (1 - 1/(i+2)) * ... * (1 - 1/(n-1)) * (1 - 1/n)
@@ -35,3 +35,10 @@ print(random_element)
 # here, 1/i = probability of choosing ith element from i elements
 #     (1 - 1/(i+1)) = probability of not choosing i+1th element
 #     and so on..
+
+# Youtube video on Reservoir samping:
+# https://www.youtube.com/watch?v=A1iwzSew5QY
+
+# GfG articles:
+# https://www.geeksforgeeks.org/reservoir-sampling/
+# https://www.geeksforgeeks.org/select-a-random-number-from-stream-with-o1-space/
