@@ -20,10 +20,12 @@ from collections import deque
 def max_in_each_subarray(arr, k):
     n = len(arr)
     Q = deque(maxlen=k)   # Holds the indices
+
     for i in range(k):
         while Q and arr[Q[-1]] <= arr[i]:
             Q.pop()
         Q.append(i)
+
     for i in range(k, n):
         print(arr[Q[0]], end=', ')
         while Q and Q[0] <= i-k:
@@ -45,3 +47,18 @@ test_cases = {
 
 for key, val in test_cases.items():
     max_in_each_subarray(key, val)
+
+
+# Explaination:
+# deque will hold the index of array elements such that deque[0] ie leftmost is the largest element in current window
+# Part 1: Handling first k elements of the array
+# For each arr[i] where 0<=i<k:
+# remove the indices of elements from deque(right side) which are smaller than arr[i],
+# then insert i in deque(right side)
+
+# Part 2: Handling rest of the elements
+# For each arr[i] where k<=i<n
+# print element at index deque[0]
+# remove all the indices from deque which are not in current window ie <=i-k
+# remove the indices of elements from deque(right side) which are smaller than arr[i],
+# then insert i in deque(right side)
