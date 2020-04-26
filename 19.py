@@ -64,47 +64,50 @@ test_case1 = [
 print(paint_houses(test_case1))
 
 
+# Reference:
+# https://ncona.com/2017/02/house-painting-problem/
+
 # Explanaion:
-Lets say we have n=4 houses and k=3 colors
-cost_matrix = [
-    [4, 20, 3],
-    [10, 4, 6],
-    [33, 10, 7],
-    [1, 9, 1]
-]
-initialize a 2D matrix dp such that
-dp[i][j] denotes the cost of painting ith house with jth color + minimum cost to paint 0 to i-1 houses
+# Lets say we have n=4 houses and k=3 colors
+# cost_matrix = [
+#     [4, 20, 3],
+#     [10, 4, 6],
+#     [33, 10, 7],
+#     [1, 9, 1]
+# ]
+# initialize a 2D matrix dp such that
+# dp[i][j] denotes the cost of painting ith house with jth color + minimum cost to paint 0 to i-1 houses
 
-For house 0:
-dp = [
-    [4, 20, 3],
-    [],
-    [],
-    [],
-]
+# For house 0:
+# dp = [
+#     [4, 20, 3],
+#     [],
+#     [],
+#     [],
+# ]
 
-For house 1:
-dp = [
-    [4, 20, 3],
-    [13, 7, 10],    # ie [10+min(20,3), 4+min(4,3), 6+min(4,20)]
-    [],
-    p[,]
-]
+# For house 1:
+# dp = [
+#     [4, 20, 3],
+#     [13, 7, 10],    # ie [10+min(20,3), 4+min(4,3), 6+min(4,20)]
+#     [],
+#     p[,]
+# ]
 
-For house 2:
-dp = [
-    [4, 20, 3],
-    [13, 7 , 10]
-    [40, 20, 14],   # ie [33+min(7,10), 10+min(13,10), 7+min(13,7)]
-    [],
-]
+# For house 2:
+# dp = [
+#     [4, 20, 3],
+#     [13, 7 , 10]
+#     [40, 20, 14],   # ie [33+min(7,10), 10+min(13,10), 7+min(13,7)]
+#     [],
+# ]
 
-For house 3:
-dp = [
-    [4, 20, 3],
-    [13, 7, 10],
-    [40, 20, 14],
-    [15, 23, 21],   # ie [1+min(20,14), 9+min(40,14), 1+min(40,20)]
-]
+# For house 3:
+# dp = [
+#     [4, 20, 3],
+#     [13, 7, 10],
+#     [40, 20, 14],
+#     [15, 23, 21],   # ie [1+min(20,14), 9+min(40,14), 1+min(40,20)]
+# ]
 
-therefor ans = 15
+# therefor ans = 15
