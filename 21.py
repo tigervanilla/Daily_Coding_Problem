@@ -39,8 +39,21 @@ def minimum_rooms_required2(intervals):
     return rooms
 
 
+def minimum_rooms_required3(intervals):
+    timesheet = [0]*86400   # 86400=total seconds in a day
+    for intrvl in intervals:
+        timesheet[intrvl[0]] += 1
+        timesheet[intrvl[1]+1] -= 1
+    rooms = 0
+    for i in range(1, 86400):
+        timesheet[i] += timesheet[i-1]
+        rooms = max(rooms, timesheet[i])
+    return rooms
+
+
 # Driver Code:
 intervals1 = [(30, 75), (0, 50), (60, 150)]
 intervals2 = [(30, 75), (0, 50), (60, 150), (50, 60), (90, 100)]
 print(minimum_rooms_required(intervals1), minimum_rooms_required(intervals2))
 print(minimum_rooms_required2(intervals1), minimum_rooms_required2(intervals2))
+print(minimum_rooms_required3(intervals1), minimum_rooms_required3(intervals2))
