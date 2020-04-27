@@ -22,7 +22,25 @@ def minimum_rooms_required(intervals):
     return rooms
 
 
+def minimum_rooms_required2(intervals):
+    intrvls = intervals.copy()
+    i, n = 0, len(intrvls)
+    rooms = 0
+    for i in range(n):
+        if intrvls[i] == None:
+            continue
+        for j in range(i+1, n):
+            if intrvls[j] == None:
+                continue
+            if (intrvls[i][1] < intrvls[j][0]) or (intrvls[i][0] > intrvls[j][1]):
+                intrvls[j] = None
+        intrvls[i] = None
+        rooms += 1
+    return rooms
+
+
 # Driver Code:
 intervals1 = [(30, 75), (0, 50), (60, 150)]
 intervals2 = [(30, 75), (0, 50), (60, 150), (50, 60), (90, 100)]
 print(minimum_rooms_required(intervals1), minimum_rooms_required(intervals2))
+print(minimum_rooms_required2(intervals1), minimum_rooms_required2(intervals2))
