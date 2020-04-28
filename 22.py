@@ -21,10 +21,15 @@ def makeSentence(dictionary, string, result):
         prefix = string[:i]
         if prefix in dictionary:
             result.append(prefix)
-            return result if i == n else makeSentence(dictionary, string[i:], result)
+            if i == n:
+                print(' '.join(result))
+                result.clear()
+                return
+            else:
+                makeSentence(dictionary, string[i:], result)
 
 # Driver Code:
-tc1 = makeSentence(dictionary1, 'thequickbrownfox', [])
-print(' '.join(tc1))
-tc2 = makeSentence(dictionary2, 'bedbathandbeyond', [])
-print(' '.join(tc2))
+makeSentence(dictionary1, 'thequickbrownfox', [])
+# print(' '.join(tc1))
+makeSentence(dictionary2, 'bedbathandbeyond', [])
+# print(' '.join(tc2))
