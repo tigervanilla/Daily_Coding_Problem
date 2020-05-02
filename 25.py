@@ -38,6 +38,24 @@ def is_match(regex, string):
         return True
     return False
 
+# Recursive solution - taken from Leetcode
+
+
+def recursive_is_match(regex, string):
+    # Empty regex matches empty string
+    if not regex:
+        return not string
+    # First character will not be a Kleene star
+    first_match = bool(string) and regex[0] in {string[0], '.'}
+    if len(regex) >= 2 and regex[1] == '*':
+        # regex[0] consumes no character or
+        # regex[0] consumes one character
+        return recursive_is_match(regex[2:], string) or \
+            (first_match and recursive_is_match(regex, string[1:]))
+    else:
+        # regex[0] consumes one character
+        return first_match and recursive_is_match(regex[1:], string[1:])
+
 
 # Driver code:
 test_cases = [
