@@ -13,13 +13,14 @@
 
 def trap_water(arr):
     n = len(arr)
-    left, right = [0]*n, [0]*n   # to store max wall in left and right
+    left, right = [0]*n, [0]*n   # to store tallest walls on left and right of the current index
     left[0], right[n-1] = arr[0], arr[n-1]
     for i in range(1, n):
-        left[i] = max(arr[i], left[i-1])
-        right[n-i-1] = max(arr[n-i-1], right[n-i])
+        left[i] = max(arr[i], left[i-1])    # compute tallest wall on left of ith index
+        right[n-i-1] = max(arr[n-i-1], right[n-i])  # compute tallest wall on right of ith index
     water = 0
     for i in range(0, n):
+        # diff b/w heights of ith index and min(tallest wall on its left, tallest wall on its right)
         water = water + (min(left[i], right[i]) - arr[i])
     return water
 
