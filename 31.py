@@ -27,7 +27,30 @@ def editDistance(str1, str2):
     return dp[-1][-1]
 
 
+# Space optimized solution
+def editDistance2(str1, str2):
+    l1, l2 = 1 + len(str1), 1 + len(str2)
+    dp = [[0]*l1 for i in range(2)]    # row for str2, column for str1
+    for j in range(l1):
+        dp[0][j] = j
+    for i in range(1, l2):
+        for j in range(l1):
+            if j == 0:
+                dp[i % 2][j] = i
+            elif str1[j-1] == str2[i-1]:
+                dp[i % 2][j] = dp[(i-1) % 2][j-1]
+            else:
+                dp[i % 2][j] = 1+min(dp[(i-1) % 2][j],    # Insertion
+                                     dp[i % 2][j-1],      # Deletion
+                                     dp[(i-1) % 2][j-1])  # Modification
+    return dp[(l2-1) % 2][-1]
+
+
 # Driver Code:
-print(editDistance('kitten', 'sitting'))
-print(editDistance('sunday', 'saturday'))
-print(editDistance('food', 'money'))
+print(editDistance('kitten', 'sitting'), editDistance2('kitten', 'sitting'))
+print(editDistance('sunday', 'saturday'), editDistance2('sunday', 'saturday'))
+print(editDistance('food', 'money'), editDistance2('food', 'money'))
+
+
+# Reference:
+# https://www.geeksforgeeks.org/edit-distance-dp-5/
