@@ -49,3 +49,22 @@ rates = [
     [0.20, 0.047, 0.052, 3.33, 3.69, 1],
 ]
 print(arbitrage(rates))
+
+
+# Explanation:
+Arbitrage opportunities arise when a cycle is determined such that the edge weights satisfy the following expression
+w1 * w2 * w3 * … * wn > 1
+
+The above constraint of finding the cycles is harder in graphs.
+Instead we must transform the edge weights of the graph such that the standard graph algorithms can be applied.
+
+Let’s take the logarithm on both sides, such that
+log(w1) + log(w2) + log(w3) + … + log(wn) > 0
+
+Taking the negative log, this becomes
+(-log(w1)) + (-log(w2)) + (-log(w3)) + … + (-log(wn)) < 0
+
+Therefore we can conclude that if we can find a cycle of vertices such that
+the sum of their weights is negative,
+then we can conclude there exists an opportunity for currency arbitrage.
+Luckily, Bellman-Ford algorithm can be used to easily detect negative weight cycles in O( | V*E|) time.
