@@ -46,6 +46,37 @@ def nQueens(n, board, row):
 for i in range(10):
     board = [[0]*i for j in range(i)]
     print('N =', i, 'Solutions =', nQueens(i, board, 0))
-# board = [[0]*n for i in range(n)]
-# print(board)
-# print(nQueens(n, board, 0))
+
+'''
+ ===============================================================================
+ Space optimised solution to N-Queens problem
+ Idea is to use an array such that its
+ index represents row
+ value represents column
+ ===============================================================================
+'''
+
+
+def isSafeSpaceOptimised(n, board, curRow, curCol):
+    for i in range(curRow):
+        diff = abs(board[i] - curCol)
+        if diff == 0 or diff == curRow - i:
+            return False
+    return True
+
+
+def nQueensSpaceOptimised(n, board, row):
+    if row == n:
+        return 1
+    count = 0
+    for col in range(n):
+        if isSafeSpaceOptimised(n, board, row, col):
+            board[row] = col
+            count += nQueensSpaceOptimised(n, board, row+1)
+            board[row] = -1
+    return count
+
+print('------------------------------------------------------')
+for i in range(10):
+    board = [[0]*i for j in range(i)]
+    print('N =', i, 'Solutions =', nQueensSpaceOptimised(i, board, 0))
